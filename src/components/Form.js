@@ -1,26 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Form = ({ loginFn }) => {
+const Form = ({ loginFn, error }) => {
+  const [user, setUser] = useState({ name: "", password: "", email: "" });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginFn();
+    loginFn(user);
+    setUser({ name: "", password: "", email: "" });
+  };
+
+  const handleChange = (e) => {
+    let name = e.target.name;
+    if (name === "name") setUser({ ...user, name: e.target.value });
+    if (name === "email") setUser({ ...user, email: e.target.value });
+    if (name === "password") setUser({ ...user, password: e.target.value });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login form</h2>
+      {error && <h3>{error}</h3>}
       <div className="inputs">
         <div className="input">
           <label htmlFor="name">Name:</label>
-          <input type="text" id="name" />
+          <input
+            type="text"
+            id="name"
+            value={user.name}
+            onChange={handleChange}
+            name="name"
+          />
         </div>
         <div className="input">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" />
+          <input
+            type="email"
+            id="email"
+            value={user.email}
+            onChange={handleChange}
+            name="email"
+          />
         </div>
         <div className="input">
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" />
+          <input
+            type="password"
+            id="password"
+            value={user.password}
+            onChange={handleChange}
+            name="password"
+          />
         </div>
       </div>
       <button type="submit">Login</button>
