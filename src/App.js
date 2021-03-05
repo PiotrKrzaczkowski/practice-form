@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Form from "./components/Form";
 
 function App() {
+  const admin = {
+    email: "slim@wp.pl",
+    password: "111",
+  };
+
+  const [user, setUser] = useState({ name: "", password: "" });
+  const [error, setError] = useState("");
+
+  const loginFn = (details) => {
+    console.log("pizdziocha");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {user.name !== "" ? (
+        <div className="welcome">
+          <h1>witaj {user.name}</h1>
+          <button>Logout</button>
+        </div>
+      ) : (
+        <Form loginFn={loginFn} />
+      )}
     </div>
   );
 }
