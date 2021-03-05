@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Form = ({ loginFn, error }) => {
   const [user, setUser] = useState({ name: "", password: "", email: "" });
@@ -29,6 +29,7 @@ const Form = ({ loginFn, error }) => {
             value={user.name}
             onChange={handleChange}
             name="name"
+            className="ipt"
           />
         </div>
         <div className="input">
@@ -39,6 +40,7 @@ const Form = ({ loginFn, error }) => {
             value={user.email}
             onChange={handleChange}
             name="email"
+            className="ipt"
           />
         </div>
         <div className="input">
@@ -49,10 +51,13 @@ const Form = ({ loginFn, error }) => {
             value={user.password}
             onChange={handleChange}
             name="password"
+            className="ipt"
           />
         </div>
       </div>
-      <button type="submit">Login</button>
+      <button className="submit-btn" type="submit">
+        Login
+      </button>
     </form>
   );
 };

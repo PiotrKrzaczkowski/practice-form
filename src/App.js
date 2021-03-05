@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
 
@@ -27,8 +27,10 @@ function App() {
     <div className="App">
       {user.name !== "" ? (
         <div className="welcome">
-          <h1>witaj {user.name}</h1>
-          <button onClick={logoutFn}>Logout</button>
+          <h1>Witaj, {user.name}</h1>
+          <button className="submit-btn" onClick={logoutFn}>
+            Logout
+          </button>
         </div>
       ) : (
         <Form loginFn={loginFn} error={error} />
